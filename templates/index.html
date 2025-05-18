@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+
+{% block title %}CircuLink - Sustainable Sourcing & Energy Efficiency{% endblock %}
+
+{% block header %}CircuLink{% endblock %}
+
+{% block content %}
+<section class="hero" style="
+    text-align: center;
+    padding: 6rem 2rem;
+    background: linear-gradient(135deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 100%);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4rem;
+">
+    <div style="
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('/static/images/hero-bg.jpg') center/cover;
+        z-index: -1;
+        filter: brightness(0.7);
+    "></div>
+    
+    <div style="max-width: 800px; margin: 0 auto;">
+        <h1 style="
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            color: white;
+        ">
+            <span style="
+                background: linear-gradient(45deg, #00ff87, #60efff);
+                -webkit-background-clip: text;
+                background-clip: text;
+                color: transparent;
+            ">Sustainable Sourcing</span> with Blockchain
+        </h1>
+        <p style="
+            font-size: 1.5rem;
+            color: rgba(255,255,255,0.9);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.6;
+        ">
+            Track, verify, and optimize your supply chain's sustainability and energy efficiency with blockchain technology.
+        </p>
+        <div style="display: flex; gap: 1rem; justify-content: center;">
+            <a href="/register_supplier" class="cta-button" style="
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                background: linear-gradient(45deg, #00ff87, #60efff);
+                border: none;
+                color: #000;
+                font-weight: bold;
+                border-radius: 50px;
+                text-decoration: none;
+                transition: transform 0.2s;
+            ">Get Started</a>
+            <a href="/about" class="cta-button" style="
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                background: transparent;
+                border: 2px solid white;
+                color: white;
+                font-weight: bold;
+                border-radius: 50px;
+                text-decoration: none;
+                transition: transform 0.2s;
+            ">Learn More</a>
+        </div>
+    </div>
+</section>
+
+<div class="features" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; padding: 2rem 0;">
+    <div class="card">
+        <h3 style="color: var(--accent-green); margin-bottom: 1rem;">Supplier Registration</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Register and verify suppliers with sustainability certifications. All data is securely stored on the blockchain.
+        </p>
+        <a href="/register_supplier" class="cta-button" style="background: transparent; border: 2px solid var(--accent-green); color: var(--accent-green);">
+            Register Now
+        </a>
+    </div>
+
+    <div class="card">
+        <h3 style="color: var(--accent-blue); margin-bottom: 1rem;">Energy Tracking</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            Monitor and track energy consumption across warehouses. View trends and identify efficiency improvements.
+        </p>
+        <a href="/energy_dashboard" class="cta-button" style="background: transparent; border: 2px solid var(--accent-blue); color: var(--accent-blue);">
+            View Dashboard
+        </a>
+    </div>
+
+    <div class="card">
+        <h3 style="background: var(--secondary-gradient); -webkit-background-clip: text; background-clip: text; color: transparent; margin-bottom: 1rem;">
+            Blockchain Verification
+        </h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+            All supplier certifications and energy data are verified and stored on our blockchain for transparency.
+        </p>
+        <a href="/blockchain" class="cta-button" style="background: var(--secondary-gradient);">
+            View Blockchain
+        </a>
+    </div>
+</div>
+
+<section class="stats" style="padding: 4rem 0; text-align: center;">
+    <h2 style="margin-bottom: 3rem;">Platform Statistics</h2>
+    <div class="stats-container">
+        <div class="stat-card">
+            <h3 class="gradient-text" style="font-size: 2.5rem;">{{ suppliers|length }}</h3>
+            <p style="color: var(--text-secondary);">Registered Suppliers</p>
+        </div>
+        <div class="stat-card">
+            <h3 class="gradient-text" style="font-size: 2.5rem;">{{ warehouses|length }}</h3>
+            <p style="color: var(--text-secondary);">Active Warehouses</p>
+        </div>
+        <div class="stat-card">
+            <h3 class="gradient-text" style="font-size: 2.5rem;">{{ "%.1f"|format(energy_data|sum(attribute='energy_consumed_kwh')) }}</h3>
+            <p style="color: var(--text-secondary);">kWh Tracked</p>
+        </div>
+    </div>
+</section>
+{% endblock %} 

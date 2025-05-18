@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block title %}About Us - CircuLink{% endblock %}
+
+{% block content %}
+<section class="hero" style="
+    position: relative;
+    width: 100%;
+    min-height: 260px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/static/images/about-hero.jpg') center/cover no-repeat;
+    margin-bottom: 2.5rem;
+    border-radius: 18px;
+    overflow: hidden;
+">
+    <div style="
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 1;
+    "></div>
+    <div style="position: relative; z-index: 2; text-align: center; color: #fff;">
+        <h1 style="font-size: 2.7rem; font-weight: bold; margin-bottom: 0.7rem; text-shadow: 0 4px 24px rgba(0,0,0,0.5);">About CircuLink</h1>
+        <p style="font-size: 1.2rem; max-width: 600px; margin: 0 auto; color: #e0f7fa;">Empowering sustainable supply chains and mobility through technology, transparency, and innovation.</p>
+    </div>
+</section>
+
+<div class="card" style="max-width: 900px; margin: 2rem auto; padding: 2rem;">
+    <h1 class="gradient-text" style="margin-bottom: 1.5rem;">About CircuLink Pty Ltd</h1>
+    <div style="margin-bottom: 2rem;">
+        <p style="color: var(--text-secondary); font-size: 1.1rem;">
+            CircuLink Pty Ltd is dedicated to revolutionizing supply chains through sustainable, technology-driven solutions. Our vision is to create a transparent, efficient, and environmentally responsible ecosystem for electric vehicle parts and logistics in South Africa and beyond.
+        </p>
+    </div>
+    <div style="margin-bottom: 2rem;">
+        <h2 style="color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.5rem;">Vision</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7;">
+            To be the leading force in sustainable mobility and circular supply chains, empowering businesses and communities to thrive in a low-carbon future.
+        </p>
+    </div>
+    <div style="margin-bottom: 2rem;">
+        <h2 style="color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.5rem;">Mission</h2>
+        <p style="color: var(--text-secondary); line-height: 1.7;">
+            We leverage IoT, blockchain, and data analytics to optimize warehouse management, streamline EV parts distribution, and promote sustainable practices. Our mission is to deliver value through innovation, transparency, and ethical leadership.
+        </p>
+    </div>
+    <div style="margin-bottom: 2rem;">
+        <h2 style="color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.5rem;">Goals</h2>
+        <ul style="color: var(--text-secondary); line-height: 1.7; padding-left: 1.2rem;">
+            <li>Advance the adoption of circular economy principles in supply chains.</li>
+            <li>Enable real-time, data-driven decision making for logistics and warehousing.</li>
+            <li>Support the growth of sustainable mobility in South Africa and Africa at large.</li>
+            <li>Foster partnerships that drive innovation and positive environmental impact.</li>
+        </ul>
+    </div>
+    <div style="margin-bottom: 2rem;">
+        <h2 class="gradient-text" style="font-size: 1.3rem; margin-bottom: 1rem;">Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <div class="team-name">N Nkosi</div>
+                <div class="team-role">Sustainable Mobility Consulting</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">J Galesitwe</div>
+                <div class="team-role">Carbon and Circular Economy Strategist</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">VS Mashaba</div>
+                <div class="team-role">Operations and Supply Chain</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">N Shumi</div>
+                <div class="team-role">Regulatory and Compliance</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">M Mbhamali</div>
+                <div class="team-role">Technology and Innovation</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">TP Leshaba</div>
+                <div class="team-role">Marketing and Public Awareness</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">Z Kupiso</div>
+                <div class="team-role">Data Analytics and Insights</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">L Ntobo</div>
+                <div class="team-role">Finance and Investment Strategies</div>
+            </div>
+            <div class="team-member">
+                <div class="team-name">L Sehemo</div>
+                <div class="team-role">Business Development and Partnerships</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+.team-member {
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 1.2rem 1rem;
+    box-shadow: 0 2px 8px 0 rgba(0,0,0,0.03);
+    text-align: center;
+    transition: box-shadow 0.2s;
+}
+.team-member:hover {
+    box-shadow: 0 4px 16px 0 rgba(0,0,0,0.08);
+}
+.team-name {
+    color: var(--text-primary);
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+}
+.team-role {
+    color: var(--text-secondary);
+    font-size: 1rem;
+    font-weight: 500;
+}
+</style>
+{% endblock %} 

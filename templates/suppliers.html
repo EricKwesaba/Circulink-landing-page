@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}Suppliers - CircuLink{% endblock %}
+
+{% block header %}Registered Suppliers{% endblock %}
+
+{% block content %}
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Sustainability Certification</th>
+            <th>Date Registered</th>
+            <th>Certification Hash</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for supplier in suppliers %}
+        <tr>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.location }}</td>
+            <td>{{ supplier.sustainability_cert }}</td>
+            <td>{{ supplier.date_registered.strftime('%Y-%m-%d') }}</td>
+            <td class="cert-hash">{{ supplier.cert_hash }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %} 

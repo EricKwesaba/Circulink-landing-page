@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}CircuLink{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #00ff88 0%, #00b8ff 100%);
+            --secondary-gradient: linear-gradient(135deg, #ff00ff 0%, #00b8ff 100%);
+            --dark-bg: #0a0a0a;
+            --darker-bg: #050505;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-primary: #ffffff;
+            --text-secondary: rgba(255, 255, 255, 0.7);
+            --accent-green: #00ff88;
+            --accent-blue: #00b8ff;
+            --sidebar-width: 250px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Top Header Bar (Always Visible) */
+        .header-bar {
+            position: sticky;
+            top: 0;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.8rem 20px;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-brand {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .menu-toggle {
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.8rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1001;
+            transition: transform 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            transform: scale(1.1);
+            color: var(--accent-green);
+        }
+
+        /* Pop-up Menu */
+        .popup-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--darker-bg);
+            box-shadow: 8px 0 16px rgba(0,0,0,0.3);
+            z-index: 999;
+            padding-top: 60px;
+            transition: transform 0.4s ease-in-out, visibility 0.4s ease-in-out;
+            transform: translateX(-100%);
+            visibility: hidden;
+            overflow-y: auto;
+        }
+
+        .popup-menu.visible {
+            transform: translateX(0);
+            visibility: visible;
+        }
+
+        .popup-menu nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .popup-menu nav ul li {
+            margin-bottom: 0.5rem;
+        }
+
+        .popup-menu nav ul li a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 20px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+
+        .popup-menu nav ul li a:hover {
+            color: var(--text-primary);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .popup-menu nav ul li a i {
+            margin-right: 1rem;
+            width: 24px;
+            text-align: center;
+        }
+
+        /* Content area adjustement, no more sidebar margin */
+        .main-content {
+            flex: 1;
+            margin-left: 0;
+            padding: 2rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .doc-layout {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            .doc-sidebar {
+                max-width: 100vw;
+                width: 100%;
+                position: static;
+                margin-bottom: 1.5rem;
+            }
+            .doc-main {
+                padding: 1.2rem 0.5rem;
+            }
+        }
+
+        /* Ensure footer doesn't overlap with menu when open */
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        .footer {
+            background: #101010;
+            color: #bbb;
+            padding: 2rem 0 1rem 0;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            margin-top: 2rem;
+            font-size: 1rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 0 20px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: #00ff88;
+        }
+
+        .footer-info {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            font-size: 0.98rem;
+        }
+
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+            .footer-links {
+                gap: 0.7rem;
+            }
+        }
+    </style>
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header-bar">
+        <a href="/" class="header-brand">
+            <img src="/static/images/logo.png" alt="CircuLink Logo" style="height: 36px; width: auto; vertical-align: middle;">
+            CircuLink
+        </a>
+        <button class="menu-toggle" id="menu-toggle" aria-label="Toggle Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </header>
+
+    <div class="layout-with-sidebar">
+        <main class="main-content">
+            {% block content %}{% endblock %}
+            {% block auth_content %}{% endblock %}
+        </main>
+    </div>
+
+    <!-- Pop-up Menu -->
+    <div class="popup-menu" id="popup-menu">
+        <nav>
+            <ul>
+                <li>
+                    <a href="/" id="menu-home">
+                        <i class="fas fa-home"></i> Home
+                    </a>
+                </li>
+                <li>
+                    <a href="/about" id="menu-about">
+                        <i class="fas fa-info-circle"></i> About
+                    </a>
+                </li>
+                <li>
+                    <a href="/warehouse_locator" id="menu-warehouse">
+                        <i class="fas fa-map-marker-alt"></i> Warehouse Locator
+                    </a>
+                </li>
+                <li>
+                    <a href="/parts_finder" id="menu-parts-finder">
+                        <i class="fas fa-search"></i> Parts Finder
+                    </a>
+                </li>
+                <li>
+                    <a href="/energy_tracking" id="menu-energy-tracking">
+                        <i class="fas fa-chart-line"></i> Energy Tracking
+                    </a>
+                </li>
+                <li>
+                    <a href="/blockchain" id="menu-blockchain">
+                        <i class="fas fa-link"></i> Blockchain
+                    </a>
+                </li>
+                <li>
+                    <a href="/suppliers" id="menu-suppliers">
+                        <i class="fas fa-industry"></i> Suppliers
+                    </a>
+                </li>
+                <li>
+                    <a href="/documentation" id="menu-documentation">
+                        <i class="fas fa-book"></i> Documentation
+                    </a>
+                </li>
+                <li>
+                    <a href="/contact" id="menu-contact">
+                        <i class="fas fa-envelope"></i> Contact
+                    </a>
+                </li>
+                {% if 'user_id' in session %}
+                <li>
+                    <a href="/logout" id="menu-logout">
+                        <i class="fas fa-sign-out-alt"></i> Logout
+                    </a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="/login" id="menu-login">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </a>
+                </li>
+                <li>
+                    <a href="/register" id="menu-register">
+                        <i class="fas fa-user-plus"></i> Register
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="/static/images/logo.png" alt="CircuLink Logo" style="height: 32px; width: auto; vertical-align: middle; margin-right: 0.5rem;">
+                <span>CircuLink</span>
+            </div>
+            <div class="footer-links">
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/warehouse_locator">Warehouse Locator</a>
+                <a href="/parts_finder">Parts Finder</a>
+                <a href="/energy_tracking">Energy Tracking</a>
+                <a href="/documentation">Documentation</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-info">
+                <span>&copy; {{ 2024 }} CircuLink Pty Ltd. All rights reserved.</span>
+                <span>|</span>
+                <a href="mailto:circulinksa@gmail.com">Support</a>
+            </div>
+        </div>
+    </footer>
+
+    {% block extra_js %}{% endblock %}
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const popupMenu = document.getElementById('popup-menu');
+        const mainContent = document.querySelector('.main-content');
+        const body = document.body;
+
+        menuToggle.addEventListener('click', () => {
+            popupMenu.classList.toggle('visible');
+            body.classList.toggle('menu-open');
+        });
+
+        document.addEventListener('click', (event) => {
+            const isClickInsideMenu = popupMenu.contains(event.target);
+            const isClickOnToggle = menuToggle.contains(event.target);
+
+            if (popupMenu.classList.contains('visible') && !isClickInsideMenu && !isClickOnToggle) {
+                popupMenu.classList.remove('visible');
+                body.classList.remove('menu-open');
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && popupMenu.classList.contains('visible')) {
+                popupMenu.classList.remove('visible');
+                body.classList.remove('menu-open');
+            }
+        });
+    </script>
+</body>
+</html> 

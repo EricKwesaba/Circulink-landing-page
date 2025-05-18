@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Register - CircuLink{% endblock %}
+
+{% block auth_content %}
+<div style="max-width: 400px; margin: 4rem auto; padding: 2rem;" class="card">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+        <h2 class="gradient-text">Create Account</h2>
+        <a href="/" style="color: var(--text-secondary); text-decoration: none; font-size: 1.5rem;">×</a>
+    </div>
+
+    <form method="POST" action="{{ url_for('register') }}">
+        <div class="form-group">
+            <label for="full_name">Full Name</label>
+            <input type="text" id="full_name" name="full_name" required
+                   style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required
+                   style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required
+                   style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+        </div>
+
+        <div class="form-group">
+            <label for="confirm_password">Confirm Password</label>
+            <input type="password" id="confirm_password" name="confirm_password" required
+                   style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1);">
+        </div>
+
+        <button type="submit" class="cta-button" style="width: 100%; margin-top: 1rem;">Register</button>
+    </form>
+
+    <p style="text-align: center; margin-top: 1.5rem; color: var(--text-secondary);">
+        Already have an account? 
+        <a href="{{ url_for('login') }}" style="color: var(--accent-green); text-decoration: none;">Login instead</a>
+    </p>
+</div>
+{% endblock %} 

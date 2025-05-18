@@ -1,0 +1,334 @@
+{% extends "base.html" %}
+
+{% block title %}Contact Us - CircuLink{% endblock %}
+
+{% block auth_content %}
+<section class="hero" style="
+    position: relative;
+    width: 100%;
+    min-height: 220px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #00b8ff 0%, #00ff88 100%), url('/static/images/contact-hero.jpg') center/cover no-repeat;
+    margin-bottom: 2.5rem;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    backdrop-filter: blur(8px);
+">
+    <div style="
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 1;
+        backdrop-filter: blur(2px);
+    "></div>
+    <div style="position: relative; z-index: 2; text-align: center; color: #fff;">
+        <h1 style="font-size: 2.5rem; font-weight: bold; margin-bottom: 0.7rem; text-shadow: 0 4px 24px rgba(0,0,0,0.5);">Contact Us</h1>
+        <p style="font-size: 1.1rem; max-width: 600px; margin: 0 auto; color: #e0f7fa;">We're here to help you with sustainable supply chain solutions and innovative EV parts management.</p>
+    </div>
+</section>
+
+<div class="contact-section-intro">
+    <h2>Get in Touch</h2>
+    <p>Reach out to our team for support, partnership, or general inquiries. We value your feedback and are ready to assist you.</p>
+</div>
+
+<!-- Contact Methods Tiles -->
+<div class="contact-tiles glass">
+    <div class="contact-tile glass">
+        <span class="contact-icon bg-blue"><i class="fas fa-phone"></i></span>
+        <div>
+            <div class="contact-label">Phone</div>
+            <a href="tel:0112345678" class="contact-value">011 234 5678</a>
+        </div>
+    </div>
+    <div class="contact-tile glass">
+        <span class="contact-icon bg-green"><i class="fas fa-envelope"></i></span>
+        <div>
+            <div class="contact-label">Email</div>
+            <a href="mailto:circulinksa@gmail.com" class="contact-value">circulinksa@gmail.com</a>
+        </div>
+    </div>
+    <div class="contact-tile glass">
+        <span class="contact-icon bg-gray"><i class="fas fa-map-marker-alt"></i></span>
+        <div>
+            <div class="contact-label">Offices</div>
+            <span class="contact-value">Currently unavailable</span>
+        </div>
+    </div>
+    <div class="contact-tile glass">
+        <span class="contact-icon bg-accent"><i class="fas fa-paper-plane"></i></span>
+        <div>
+            <div class="contact-label">Support</div>
+            <a href="mailto:circulinksa@gmail.com" class="cta-button small">Send us an Email</a>
+        </div>
+    </div>
+</div>
+
+<!-- Social Media Links -->
+<div class="social-row">
+    <a href="#" class="social-icon linkedin" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" class="social-icon twitter" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+    <a href="#" class="social-icon facebook" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="social-icon instagram" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+</div>
+
+<!-- Our Operations Card -->
+<div class="card contact-card pro-card glass">
+    <h2><i class="fas fa-cogs" style="color:#00b8ff;margin-right:0.5rem;"></i>Our Operations</h2>
+    <p>
+        CircuLink leverages IoT and blockchain technology to optimize warehouse management, streamline EV parts distribution, and promote sustainable supply chains across South Africa. We are committed to transparency, efficiency, and innovation in every aspect of our operations, ensuring our partners and clients benefit from real-time data, secure transactions, and environmentally responsible practices.
+    </p>
+</div>
+
+<!-- FAQ Card -->
+<div class="card contact-card pro-card glass">
+    <h2><i class="fas fa-question-circle" style="color:#00ff88;margin-right:0.5rem;"></i>Frequently Asked Questions (FAQs)</h2>
+    <div class="faq-list">
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-plus-circle"></i> <strong>What services does CircuLink offer?</strong></button>
+            <div class="faq-answer" style="display:none;">We provide IoT and blockchain-powered solutions for warehouse management, EV parts distribution, and sustainable supply chains.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-plus-circle"></i> <strong>How can I become a partner or supplier?</strong></button>
+            <div class="faq-answer" style="display:none;">Email us at <a href="mailto:circulinksa@gmail.com" style="color: #4fc3f7;">circulinksa@gmail.com</a> with your details and our team will get in touch.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-plus-circle"></i> <strong>Where are your offices located?</strong></button>
+            <div class="faq-answer" style="display:none;">Currently, our offices are unavailable, but we operate digitally and serve clients across South Africa.</div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)"><i class="fas fa-plus-circle"></i> <strong>How do I track my order or request support?</strong></button>
+            <div class="faq-answer" style="display:none;">Contact us via email or phone, and our support team will assist you promptly.</div>
+        </div>
+    </div>
+</div>
+
+<!-- Reviews Card -->
+<div class="card contact-card pro-card glass">
+    <h2><i class="fas fa-star" style="color:#ffd700;margin-right:0.5rem;"></i>Reviews in Emails</h2>
+    <p>
+        We value your feedback! Please include your reviews or testimonials in your emails to <a href="mailto:circulinksa@gmail.com" style="color: #4fc3f7;">circulinksa@gmail.com</a> so we can continue to improve our services and share your experiences with our community.
+    </p>
+</div>
+
+<style>
+/* Remove light background override for contact page */
+/* body {
+    background: linear-gradient(135deg, #e0f7fa 0%, #fff 100%);
+} */
+.contact-section-intro {
+    max-width: 700px;
+    margin: 0 auto 2rem auto;
+    text-align: center;
+}
+.contact-section-intro h2 {
+    font-size: 2rem;
+    color: #00b8ff;
+    margin-bottom: 0.5rem;
+}
+.contact-section-intro p {
+    color: #555;
+    font-size: 1.1rem;
+}
+.contact-tiles {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    max-width: 900px;
+    margin: 0 auto 2rem auto;
+}
+.contact-tile {
+    background: rgba(255,255,255,0.25);
+    border-radius: 18px;
+    padding: 1.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    color: #222;
+    border: 1px solid rgba(255,255,255,0.18);
+    transition: box-shadow 0.3s, border 0.3s, transform 0.2s;
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+.contact-tile:hover {
+    box-shadow: 0 12px 40px 0 rgba(0,184,255,0.18);
+    border: 1.5px solid #00b8ff;
+    transform: translateY(-4px) scale(1.025);
+}
+.contact-tile::after {
+    content: '';
+    position: absolute;
+    left: -60%;
+    top: 0;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(120deg, rgba(0,255,136,0.08) 0%, rgba(0,184,255,0.12) 100%);
+    filter: blur(12px);
+    z-index: 0;
+    transition: left 0.4s cubic-bezier(.4,2,.6,1), opacity 0.3s;
+    opacity: 0.7;
+}
+.contact-tile:hover::after {
+    left: 100%;
+    opacity: 0.2;
+}
+.contact-icon {
+    font-size: 2rem;
+    color: #fff;
+    min-width: 2.5rem;
+    text-align: center;
+    border-radius: 50%;
+    padding: 0.7rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px 0 rgba(0,184,255,0.10);
+    z-index: 1;
+}
+.bg-blue { background: #00b8ff; }
+.bg-green { background: #00ff88; }
+.bg-gray { background: #bdbdbd; }
+.bg-accent { background: #ffb74d; }
+.contact-label {
+    font-weight: 600;
+    color: #222;
+    font-size: 1.08rem;
+    margin-bottom: 0.2rem;
+}
+.contact-value, .contact-value a {
+    color: #444;
+    font-size: 1.08rem;
+    text-decoration: none;
+}
+.cta-button.small {
+    padding: 0.5rem 1.2rem;
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+}
+.pro-card {
+    background: rgba(255,255,255,0.25) !important;
+    color: #222 !important;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.18);
+    border: 1px solid rgba(255,255,255,0.18);
+    margin-bottom: 2rem;
+    max-width: 900px;
+    backdrop-filter: blur(8px);
+    position: relative;
+    overflow: hidden;
+}
+.pro-card h2 {
+    color: #00b8ff;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+}
+.faq-list {
+    margin-top: 1rem;
+}
+.faq-item {
+    margin-bottom: 1rem;
+}
+.faq-question {
+    background: #f7f7f7cc;
+    border: none;
+    color: #222;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s, box-shadow 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    box-shadow: 0 2px 8px 0 rgba(0,184,255,0.04);
+    outline: none;
+}
+.faq-question:focus, .faq-question:hover {
+    background: #e0f7fa;
+    color: #00b8ff;
+    box-shadow: 0 4px 16px 0 rgba(0,184,255,0.10);
+}
+.faq-answer {
+    background: #f9f9f9cc;
+    color: #333;
+    padding: 0.7rem 1rem;
+    border-radius: 6px;
+    margin-top: 0.2rem;
+    box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 0.5s cubic-bezier(.4,2,.6,1), opacity 0.4s;
+}
+.faq-item.open .faq-answer {
+    max-height: 200px;
+    opacity: 1;
+    padding-top: 0.7rem;
+}
+.social-row {
+    display: flex;
+    justify-content: center;
+    gap: 1.2rem;
+    margin-bottom: 2.5rem;
+}
+.social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #00b8ff 0%, #00ff88 100%);
+    color: #fff;
+    font-size: 1.3rem;
+    box-shadow: 0 2px 8px 0 rgba(0,184,255,0.10);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    text-decoration: none;
+}
+.social-icon:hover {
+    transform: scale(1.12) rotate(-6deg);
+    box-shadow: 0 4px 16px 0 rgba(0,184,255,0.18);
+    background: linear-gradient(135deg, #00ff88 0%, #00b8ff 100%);
+}
+@media (max-width: 600px) {
+    .contact-section-intro, .pro-card, .contact-tiles {
+        max-width: 98vw;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+    }
+    .contact-tile {
+        padding: 1rem 0.5rem;
+    }
+}
+</style>
+<script>
+function toggleFaq(btn) {
+    var item = btn.parentElement;
+    var answer = btn.nextElementSibling;
+    if (item.classList.contains('open')) {
+        answer.style.maxHeight = '0';
+        answer.style.opacity = '0';
+        item.classList.remove('open');
+    } else {
+        document.querySelectorAll('.faq-item').forEach(function(i){
+            i.classList.remove('open');
+            i.querySelector('.faq-answer').style.maxHeight = '0';
+            i.querySelector('.faq-answer').style.opacity = '0';
+        });
+        answer.style.maxHeight = '200px';
+        answer.style.opacity = '1';
+        item.classList.add('open');
+    }
+}
+</script>
+{% endblock %} 

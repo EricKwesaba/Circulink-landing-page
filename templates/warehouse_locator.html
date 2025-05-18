@@ -1,0 +1,236 @@
+{% extends "base.html" %}
+
+{% block title %}Warehouse Locator - CircuLink{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h1 class="gradient-text" style="margin-bottom: 2rem;">EV Parts Warehouse Locator</h1>
+    
+    <div style="margin-bottom: 2rem;">
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+            Our advanced IoT and blockchain-powered warehouse locator helps you find the most efficient storage locations 
+            for electric vehicle parts across South Africa. We analyze real-time data to ensure optimal conditions for 
+            battery systems, electric motors, and other sensitive EV components.
+        </p>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="card" style="margin-bottom: 2rem; background: rgba(255, 255, 255, 0.03);">
+        <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Find Optimal EV Parts Storage</h2>
+        <form id="warehouseSearchForm" class="form-group">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                    <label for="region">Region</label>
+                    <select id="region" name="region" class="form-control">
+                        <option value="">Select Region</option>
+                        <option value="gauteng">Gauteng</option>
+                        <option value="western-cape">Western Cape</option>
+                        <option value="eastern-cape">Eastern Cape</option>
+                        <option value="kwazulu-natal">KwaZulu-Natal</option>
+                        <option value="free-state">Free State</option>
+                        <option value="north-west">North West</option>
+                        <option value="mpumalanga">Mpumalanga</option>
+                        <option value="limpopo">Limpopo</option>
+                        <option value="northern-cape">Northern Cape</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="storage_type">Storage Type</label>
+                    <select id="storage_type" name="storage_type" class="form-control">
+                        <option value="">Select Type</option>
+                        <option value="battery">Battery Storage</option>
+                        <option value="motor">Electric Motor Storage</option>
+                        <option value="controller">Controller Storage</option>
+                        <option value="general">General EV Parts</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="size">Required Size (m²)</label>
+                    <input type="number" id="size" name="size" min="100" step="100" placeholder="Enter size">
+                </div>
+            </div>
+            <div style="margin-bottom: 1rem;">
+                <label>Special Requirements</label>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 0.5rem;">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="requirements" value="temperature"> Temperature Control
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="requirements" value="humidity"> Humidity Control
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="requirements" value="security"> High Security
+                    </label>
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="requirements" value="charging"> Charging Facilities
+                    </label>
+                </div>
+            </div>
+            <button type="submit" class="cta-button">Find Optimal Location</button>
+        </form>
+    </div>
+
+    <!-- IoT Data Visualization -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Real-time Storage Conditions</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+            <div class="metric-card">
+                <i class="fas fa-temperature-high" style="color: var(--accent-green); font-size: 1.5rem;"></i>
+                <h3>Temperature</h3>
+                <p id="temperature">--°C</p>
+                <small>Optimal: 15-25°C</small>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-tint" style="color: var(--accent-blue); font-size: 1.5rem;"></i>
+                <h3>Humidity</h3>
+                <p id="humidity">--%</p>
+                <small>Optimal: 45-55%</small>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-bolt" style="color: var(--accent-green); font-size: 1.5rem;"></i>
+                <h3>Power Stability</h3>
+                <p id="power">--%</p>
+                <small>Backup Systems Active</small>
+            </div>
+            <div class="metric-card">
+                <i class="fas fa-shield-alt" style="color: var(--accent-blue); font-size: 1.5rem;"></i>
+                <h3>Security Level</h3>
+                <p id="security">Level --</p>
+                <small>24/7 Monitoring</small>
+            </div>
+        </div>
+    </div>
+
+    <!-- Blockchain Verification -->
+    <div class="card">
+        <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Blockchain Verification</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem;">
+            <div class="verification-card">
+                <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Storage Conditions</h3>
+                <p style="color: var(--text-secondary);">Verified on blockchain</p>
+                <div class="hash-display">
+                    <small>Last Hash: <span id="conditionsHash">0x...</span></small>
+                </div>
+            </div>
+            <div class="verification-card">
+                <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Inventory Status</h3>
+                <p style="color: var(--text-secondary);">Immutable record</p>
+                <div class="hash-display">
+                    <small>Last Hash: <span id="inventoryHash">0x...</span></small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .form-control {
+        width: 100%;
+        padding: 0.75rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 8px;
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+    }
+
+    .checkbox-label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        cursor: pointer;
+    }
+
+    .checkbox-label input[type="checkbox"] {
+        width: 18px;
+        height: 18px;
+        accent-color: var(--accent-green);
+    }
+
+    .metric-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 12px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+
+    .metric-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .metric-card h3 {
+        color: var(--text-primary);
+        margin: 0.5rem 0;
+        font-size: 1rem;
+    }
+
+    .metric-card p {
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin: 0;
+    }
+
+    .metric-card small {
+        color: var(--text-secondary);
+        opacity: 0.7;
+        font-size: 0.8rem;
+    }
+
+    .verification-card {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 1.5rem;
+        border-radius: 12px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .hash-display {
+        margin-top: 1rem;
+        padding: 0.5rem;
+        background: rgba(0, 0, 0, 0.2);
+        border-radius: 4px;
+        font-family: monospace;
+    }
+
+    .hash-display small {
+        color: var(--text-secondary);
+    }
+</style>
+
+<script>
+    // Simulated IoT data updates
+    function updateIoTData() {
+        document.getElementById('temperature').textContent = (Math.random() * 5 + 20).toFixed(1) + '°C';
+        document.getElementById('humidity').textContent = (Math.random() * 10 + 45).toFixed(0) + '%';
+        document.getElementById('power').textContent = (Math.random() * 5 + 95).toFixed(0) + '%';
+        document.getElementById('security').textContent = 'Level ' + (Math.random() * 2 + 3).toFixed(0);
+    }
+
+    // Simulated blockchain hash updates
+    function updateBlockchainHashes() {
+        const chars = '0123456789abcdef';
+        let hash = '0x';
+        for (let i = 0; i < 64; i++) {
+            hash += chars[Math.floor(Math.random() * chars.length)];
+        }
+        document.getElementById('conditionsHash').textContent = hash;
+        document.getElementById('inventoryHash').textContent = hash;
+    }
+
+    // Update data every 5 seconds
+    setInterval(updateIoTData, 5000);
+    setInterval(updateBlockchainHashes, 5000);
+    updateIoTData();
+    updateBlockchainHashes();
+
+    // Form submission handler
+    document.getElementById('warehouseSearchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically make an API call to your backend
+        alert('Searching for optimal EV parts storage locations...');
+    });
+</script>
+{% endblock %} 

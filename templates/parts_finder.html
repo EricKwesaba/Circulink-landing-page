@@ -1,0 +1,414 @@
+{% extends "base.html" %}
+
+{% block title %}Parts Finder - CircuLink{% endblock %}
+
+{% block content %}
+<section class="hero" style="
+    position: relative;
+    width: 100%;
+    min-height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('/static/images/ev-parts-hero.jpg') center/cover no-repeat;
+    margin-bottom: 2.5rem;
+    border-radius: 18px;
+    overflow: hidden;
+">
+    <div style="
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.55);
+        z-index: 1;
+    "></div>
+    <h1 style="
+        position: relative;
+        z-index: 2;
+        color: #fff;
+        font-size: 3rem;
+        font-weight: bold;
+        text-shadow: 0 4px 24px rgba(0,0,0,0.5);
+        letter-spacing: 1px;
+        margin: 0;
+    ">Find EV Parts</h1>
+</section>
+
+<div class="card">
+    <h1 class="gradient-text" style="margin-bottom: 2rem;">EV Parts Finder</h1>
+    
+    <div style="margin-bottom: 2rem;">
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+            Access our comprehensive catalog of electric vehicle parts across South African warehouses. 
+            Track real-time availability, compare prices, and manage international imports through our 
+            IoT-powered supply chain network.
+        </p>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="card" style="margin-bottom: 2rem; background: rgba(255, 255, 255, 0.03);">
+        <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Find EV Parts</h2>
+        <form id="partsSearchForm" class="form-group">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; margin-bottom: 1rem;">
+                <div>
+                    <label for="category">Part Category</label>
+                    <select id="category" name="category" class="form-control">
+                        <option value="">Select Category</option>
+                        <option value="battery">Battery Systems</option>
+                        <option value="motor">Electric Motors</option>
+                        <option value="controller">Motor Controllers</option>
+                        <option value="charger">Charging Systems</option>
+                        <option value="inverter">Power Inverters</option>
+                        <option value="bms">Battery Management Systems</option>
+                        <option value="thermal">Thermal Management</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="manufacturer">Manufacturer</label>
+                    <select id="manufacturer" name="manufacturer" class="form-control">
+                        <option value="">Select Manufacturer</option>
+                        <option value="tesla">Tesla</option>
+                        <option value="bosch">Bosch</option>
+                        <option value="siemens">Siemens</option>
+                        <option value="abb">ABB</option>
+                        <option value="lg">LG Chem</option>
+                        <option value="panasonic">Panasonic</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="location">Warehouse Location</label>
+                    <select id="location" name="location" class="form-control">
+                        <option value="">All Locations</option>
+                        <option value="gauteng">Gauteng</option>
+                        <option value="western-cape">Western Cape</option>
+                        <option value="eastern-cape">Eastern Cape</option>
+                        <option value="kwazulu-natal">KwaZulu-Natal</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="cta-button">Search Parts</button>
+        </form>
+    </div>
+
+    <!-- Parts Catalog -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <h2 style="color: var(--text-primary); margin-bottom: 1rem;">Available Parts</h2>
+        <div class="parts-grid">
+            <!-- Sample Part Card -->
+            <div class="part-card">
+                <div class="part-image">
+                    <i class="fas fa-battery-full" style="font-size: 2rem; color: var(--accent-green);"></i>
+                </div>
+                <div class="part-info">
+                    <h3>Tesla Model 3 Battery Pack</h3>
+                    <p class="part-specs">75 kWh • 350V • 2170 Cells</p>
+                    <div class="availability">
+                        <span class="status available">In Stock</span>
+                        <span class="quantity">15 units</span>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Gauteng Warehouse</span>
+                    </div>
+                    <div class="price">
+                        <span class="amount">R 285,000</span>
+                        <button class="cta-button small">Order Now</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- More Part Cards -->
+            <div class="part-card">
+                <div class="part-image">
+                    <i class="fas fa-bolt" style="font-size: 2rem; color: var(--accent-blue);"></i>
+                </div>
+                <div class="part-info">
+                    <h3>Bosch Electric Motor</h3>
+                    <p class="part-specs">150 kW • 400V • IP67 Rated</p>
+                    <div class="availability">
+                        <span class="status low">Low Stock</span>
+                        <span class="quantity">3 units</span>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Western Cape Warehouse</span>
+                    </div>
+                    <div class="price">
+                        <span class="amount">R 95,000</span>
+                        <button class="cta-button small">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="part-card">
+                <div class="part-image">
+                    <i class="fas fa-car-battery" style="font-size: 2rem; color: var(--accent-green);"></i>
+                </div>
+                <div class="part-info">
+                    <h3>Nissan Leaf Battery Module</h3>
+                    <p class="part-specs">24 kWh • 360V • Lithium-ion</p>
+                    <div class="availability">
+                        <span class="status available">In Stock</span>
+                        <span class="quantity">8 units</span>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>KwaZulu-Natal Warehouse</span>
+                    </div>
+                    <div class="price">
+                        <span class="amount">R 120,000</span>
+                        <button class="cta-button small">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="part-card">
+                <div class="part-image">
+                    <i class="fas fa-exchange-alt" style="font-size: 2rem; color: var(--accent-blue);"></i>
+                </div>
+                <div class="part-info">
+                    <h3>Siemens Inverter</h3>
+                    <p class="part-specs">200 kW • 400V • 3-Phase</p>
+                    <div class="availability">
+                        <span class="status available">In Stock</span>
+                        <span class="quantity">5 units</span>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Eastern Cape Warehouse</span>
+                    </div>
+                    <div class="price">
+                        <span class="amount">R 75,000</span>
+                        <button class="cta-button small">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="part-card">
+                <div class="part-image">
+                    <i class="fas fa-charging-station" style="font-size: 2rem; color: var(--accent-green);"></i>
+                </div>
+                <div class="part-info">
+                    <h3>ABB Fast Charger</h3>
+                    <p class="part-specs">50 kW • CCS/CHAdeMO • Outdoor</p>
+                    <div class="availability">
+                        <span class="status available">In Stock</span>
+                        <span class="quantity">10 units</span>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Western Cape Warehouse</span>
+                    </div>
+                    <div class="price">
+                        <span class="amount">R 60,000</span>
+                        <button class="cta-button small">Order Now</button>
+                    </div>
+                </div>
+            </div>
+            <div class="part-card">
+                <div class="part-image">
+                    <i class="fas fa-microchip" style="font-size: 2rem; color: var(--accent-blue);"></i>
+                </div>
+                <div class="part-info">
+                    <h3>Panasonic Battery Management System</h3>
+                    <p class="part-specs">Smart BMS • 96 Cells • CAN Bus</p>
+                    <div class="availability">
+                        <span class="status available">In Stock</span>
+                        <span class="quantity">12 units</span>
+                    </div>
+                    <div class="location">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Gauteng Warehouse</span>
+                    </div>
+                    <div class="price">
+                        <span class="amount">R 35,000</span>
+                        <button class="cta-button small">Order Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- International Import Section -->
+    <div class="card">
+        <h2 style="color: var(--text-primary); margin-bottom: 1rem;">International Import Options</h2>
+        <div class="import-options">
+            <div class="import-card">
+                <h3 style="color: var(--text-primary); margin-bottom: 0.5rem;">Global Supply Chain</h3>
+                <div class="iot-metrics">
+                    <div class="metric">
+                        <i class="fas fa-ship" style="color: var(--accent-green);"></i>
+                        <span>Shipping Time: 15-20 days</span>
+                    </div>
+                    <div class="metric">
+                        <i class="fas fa-temperature-low" style="color: var(--accent-blue);"></i>
+                        <span>Temperature: 18°C</span>
+                    </div>
+                    <div class="metric">
+                        <i class="fas fa-box" style="color: var(--accent-green);"></i>
+                        <span>Container Status: In Transit</span>
+                    </div>
+                </div>
+                <button class="cta-button">Import Parts</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .parts-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .part-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 1.5rem;
+        display: flex;
+        gap: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .part-card:hover {
+        transform: translateY(-5px);
+        background: rgba(255, 255, 255, 0.08);
+    }
+
+    .part-image {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 80px;
+        height: 80px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 8px;
+    }
+
+    .part-info {
+        flex: 1;
+    }
+
+    .part-info h3 {
+        color: var(--text-primary);
+        margin: 0 0 0.5rem 0;
+        font-size: 1.1rem;
+    }
+
+    .part-specs {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .availability {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .status {
+        padding: 0.25rem 0.5rem;
+        border-radius: 4px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+
+    .status.available {
+        background: rgba(0, 255, 136, 0.1);
+        color: var(--accent-green);
+    }
+
+    .status.low {
+        background: rgba(255, 165, 0, 0.1);
+        color: #ffa500;
+    }
+
+    .quantity {
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    .location {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 1rem;
+    }
+
+    .amount {
+        color: var(--text-primary);
+        font-weight: 600;
+        font-size: 1.1rem;
+    }
+
+    .cta-button.small {
+        padding: 0.5rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .import-options {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+
+    .import-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        padding: 1.5rem;
+    }
+
+    .iot-metrics {
+        margin: 1rem 0;
+    }
+
+    .metric {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+    }
+
+    .metric i {
+        width: 20px;
+    }
+</style>
+
+<script>
+    // Simulated IoT data updates for import section
+    function updateImportMetrics() {
+        const metrics = document.querySelectorAll('.metric span');
+        metrics[0].textContent = `Shipping Time: ${Math.floor(Math.random() * 5 + 15)}-${Math.floor(Math.random() * 5 + 20)} days`;
+        metrics[1].textContent = `Temperature: ${(Math.random() * 5 + 15).toFixed(1)}°C`;
+        metrics[2].textContent = `Container Status: ${['In Transit', 'At Port', 'Loading', 'Unloading'][Math.floor(Math.random() * 4)]}`;
+    }
+
+    // Update import metrics every 10 seconds
+    setInterval(updateImportMetrics, 10000);
+    updateImportMetrics();
+
+    // Form submission handler
+    document.getElementById('partsSearchForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        // Here you would typically make an API call to your backend
+        alert('Searching for parts...');
+    });
+
+    // Order button handlers
+    document.querySelectorAll('.cta-button.small').forEach(button => {
+        button.addEventListener('click', function() {
+            const partName = this.closest('.part-card').querySelector('h3').textContent;
+            alert(`Ordering ${partName}...`);
+        });
+    });
+</script>
+{% endblock %} 

@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+
+{% block title %}Energy Tracking Dashboard - CircuLink{% endblock %}
+
+{% block content %}
+<div class="card" style="padding: 2rem;">
+    <h1 class="gradient-text" style="margin-bottom: 2rem;">Energy & Efficiency Dashboard</h1>
+    <p style="color: var(--text-secondary); margin-bottom: 2rem;">
+        Monitor and compare efficiency metrics for warehouses and manufacturing firms. Track energy consumption, waste management, and defect minimization in real time.
+    </p>
+
+    <!-- Efficiency Gauges -->
+    <div class="gauges-grid">
+        <div class="gauge-card" style="background: url('/static/images/energy-tile.jpg') center/cover no-repeat, rgba(255,255,255,0.05);">
+            <canvas id="gauge-energy"></canvas>
+            <div class="gauge-label">Energy Efficiency</div>
+            <div class="gauge-target">Target: 80%</div>
+        </div>
+        <div class="gauge-card" style="background: url('/static/images/waste-tile.jpg') center/cover no-repeat, rgba(255,255,255,0.05);">
+            <canvas id="gauge-waste"></canvas>
+            <div class="gauge-label">Waste Management</div>
+            <div class="gauge-target">Target: 90%</div>
+        </div>
+        <div class="gauge-card" style="background: url('/static/images/defects-tile.jpg') center/cover no-repeat, rgba(255,255,255,0.05);">
+            <canvas id="gauge-defects"></canvas>
+            <div class="gauge-label">Defect Minimization</div>
+            <div class="gauge-target">Target: 95%</div>
+        </div>
+        <div class="gauge-card" style="background: url('/static/images/efficiency-tile.jpg') center/cover no-repeat, rgba(255,255,255,0.05);">
+            <canvas id="gauge-efficiency"></canvas>
+            <div class="gauge-label">Overall Efficiency</div>
+            <div class="gauge-target">Target: 92%</div>
+        </div>
+    </div>
+
+    <!-- Resource & Time Breakdown Section -->
+    <div class="card" style="margin-top: 2rem;">
+        <h2 style="color: var(--text-primary); margin-bottom: 1.5rem;">Resource & Time Breakdown</h2>
+        <div class="breakdown-grid">
+            <div class="breakdown-tile">
+                <h3>Human Resources</h3>
+                <p>Active staff: <span id="hr-staff">42</span></p>
+                <p>Hours logged: <span id="hr-hours">1,280</span></p>
+            </div>
+            <div class="breakdown-tile">
+                <h3>Material Usage</h3>
+                <p>Materials used: <span id="mat-used">3,200 kg</span></p>
+                <p>Waste generated: <span id="mat-waste">120 kg</span></p>
+            </div>
+            <div class="breakdown-tile">
+                <h3>Budget Allocation</h3>
+                <p>Budget used: <span id="budget-used">R 1,200,000</span></p>
+                <p>Remaining: <span id="budget-remain">R 300,000</span></p>
+            </div>
+            <div class="breakdown-tile">
+                <h3>Project Timelines</h3>
+                <p>Current phase: <span id="proj-phase">Assembly</span></p>
+                <p>Days to completion: <span id="proj-days">18</span></p>
+            </div>
+        </div>
+        <canvas id="breakdownChart" height="120" style="margin-top:2rem;"></canvas>
+    </div>
+
+    <!-- Efficiency Tracking Section -->
+    <div class="card" style="margin-top: 2rem;">
+        <h2 style="color: var(--text-primary); margin-bottom: 1.5rem;">EV Parts Procurement Efficiency Tracking</h2>
+        <div class="efficiency-grid">
+            <div class="efficiency-tile">
+                <h3>Cost Comparison</h3>
+                <p>Compare part prices across suppliers and time periods.</p>
+                <button class="cta-button small" onclick="alert('Show cost comparison chart')">View Chart</button>
+            </div>
+            <div class="efficiency-tile">
+                <h3>Delivery Lead Times</h3>
+                <p>Analyze average and fastest delivery times for each supplier.</p>
+                <button class="cta-button small" onclick="alert('Show delivery lead time analysis')">Analyze</button>
+            </div>
+            <div class="efficiency-tile">
+                <h3>Supplier Reliability</h3>
+                <p>Track on-time delivery rates and order fulfillment accuracy.</p>
+                <button class="cta-button small" onclick="alert('Show supplier reliability metrics')">Track</button>
+            </div>
+            <div class="efficiency-tile">
+                <h3>Material Sustainability</h3>
+                <p>Review supplier certifications and eco-friendly sourcing.</p>
+                <button class="cta-button small" onclick="alert('Show sustainability data')">Review</button>
+            </div>
+        </div>
+        <div style="margin-top:2rem;">
+            <h4>Procurement Optimization</h4>
+            <p>Optimize your procurement by comparing suppliers on cost, speed, reliability, and sustainability. Use the options above for interactive analysis and real-time tracking.</p>
+            <button class="cta-button" onclick="alert('Run procurement optimization')">Optimize Procurement</button>
+            <button class="cta-button" onclick="alert('Compare Supplier Efficiency')">Compare Supplier Efficiency</button>
+        </div>
+    </div>
+</div>
+
+<style>
+    .gauges-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    .gauge-card {
+        background: rgba(255,255,255,0.05);
+        border-radius: 12px;
+        padding: 1.5rem 1rem 1rem 1rem;
+        text-align: center;
+        box-shadow: 0 2px 8px 0 rgba(0,0,0,0.04);
+    }
+    .gauge-label {
+        color: var(--text-primary);
+        font-weight: 600;
+        margin-top: 1rem;
+        font-size: 1.1rem;
+    }
+    .gauge-target {
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+        margin-top: 0.2rem;
+    }
+    .breakdown-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .breakdown-tile {
+        background: rgba(255,255,255,0.07);
+        border-radius: 10px;
+        padding: 1.2rem 1rem;
+        color: var(--text-primary);
+        box-shadow: 0 1px 6px 0 rgba(0,0,0,0.03);
+    }
+    .breakdown-tile h3 {
+        margin-top: 0;
+        margin-bottom: 0.7rem;
+        font-size: 1.1rem;
+    }
+    .efficiency-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .efficiency-tile {
+        background: rgba(255,255,255,0.07);
+        border-radius: 10px;
+        padding: 1.2rem 1rem;
+        color: var(--text-primary);
+        box-shadow: 0 1px 6px 0 rgba(0,0,0,0.03);
+        text-align: center;
+    }
+    .efficiency-tile h3 {
+        margin-top: 0;
+        margin-bottom: 0.7rem;
+        font-size: 1.1rem;
+    }
+    .cta-button.small {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.95rem;
+        margin-top: 0.7rem;
+    }
+</style>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-gauge@0.4.2/dist/chartjs-gauge.min.js"></script>
+<script>
+// Gauge Data (sample values)
+const gaugeData = [
+    { id: 'gauge-energy', value: 72, target: 80, color: '#4fc3f7' },
+    { id: 'gauge-waste', value: 88, target: 90, color: '#81c784' },
+    { id: 'gauge-defects', value: 93, target: 95, color: '#ffb74d' }
+];
+
+gaugeData.forEach(g => {
+    new Chart(document.getElementById(g.id).getContext('2d'), {
+        type: 'gauge',
+        data: {
+            datasets: [{
+                value: g.value,
+                minValue: 0,
+                data: [g.value, 100-g.value],
+                backgroundColor: [g.color, '#22242a'],
+                borderWidth: 0
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '80%',
+            circumference: 180,
+            rotation: 270,
+            plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false },
+                datalabels: { display: false }
+            },
+            layout: { padding: 0 },
+            needle: {
+                radiusPercentage: 2,
+                widthPercentage: 3.2,
+                lengthPercentage: 80,
+                color: '#fff'
+            },
+            valueLabel: {
+                display: true,
+                formatter: (value) => value + ' %',
+                color: '#fff',
+                font: { size: 22, weight: 'bold' }
+            }
+        }
+    });
+});
+
+// Waterfall/Bar Chart Data (sample)
+const breakdownLabels = [
+    'Total Energy', 'Lighting', 'HVAC', 'Machinery', 'IT Systems', 'Waste', 'Defects', 'Net Efficient Use'
+];
+const breakdownData = [
+    100, 20, 18, 30, 12, -8, -4, 72
+];
+const breakdownBg = [
+    '#4fc3f7', '#b3e5fc', '#b2dfdb', '#ffe082', '#ce93d8', '#e57373', '#ffb74d', '#81c784'
+];
+
+new Chart(document.getElementById('breakdownChart').getContext('2d'), {
+    type: 'bar',
+    data: {
+        labels: breakdownLabels,
+        datasets: [{
+            label: 'kWh / Units',
+            data: breakdownData,
+            backgroundColor: breakdownBg,
+            borderRadius: 6
+        }]
+    },
+    options: {
+        plugins: {
+            legend: { display: false },
+            tooltip: { enabled: true }
+        },
+        scales: {
+            y: {
+                beginAtZero: true,
+                title: { display: true, text: 'kWh / Units', color: '#fff' },
+                ticks: { color: '#fff' },
+                grid: { color: 'rgba(255,255,255,0.07)' }
+            },
+            x: {
+                ticks: { color: '#fff' },
+                grid: { color: 'rgba(255,255,255,0.07)' }
+            }
+        }
+    }
+});
+</script>
+{% endblock %} 

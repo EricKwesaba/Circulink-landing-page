@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Register Supplier - CircuLink{% endblock %}
+
+{% block header %}Register Supplier{% endblock %}
+
+{% block content %}
+<form method="POST" action="{{ url_for('register_supplier') }}">
+    <div class="form-group">
+        <label for="name">Supplier Name:</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="location">Location:</label>
+        <input type="text" id="location" name="location" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="sustainability_cert">Sustainability Certification Details:</label>
+        <textarea id="sustainability_cert" name="sustainability_cert" rows="4" required></textarea>
+    </div>
+    
+    <button type="submit">Register Supplier</button>
+</form>
+{% endblock %} 

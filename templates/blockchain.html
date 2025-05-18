@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}Blockchain View - CircuLink{% endblock %}
+
+{% block header %}Blockchain View{% endblock %}
+
+{% block content %}
+{% for block in chain %}
+<div class="block">
+    <div class="block-header">
+        <span class="block-number">Block #{{ loop.index0 }}</span>
+        <span class="block-timestamp">{{ block.timestamp }}</span>
+    </div>
+    <div class="block-data">
+        <pre>{{ block.data|tojson(indent=2) }}</pre>
+    </div>
+    <div class="block-hash">
+        <span class="hash-label">Previous Hash:</span> {{ block.previous_hash }}
+    </div>
+    <div class="block-hash">
+        <span class="hash-label">Hash:</span> {{ block.hash }}
+    </div>
+</div>
+{% endfor %}
+{% endblock %} 

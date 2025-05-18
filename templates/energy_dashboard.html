@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Energy Dashboard - CircuLink{% endblock %}
+
+{% block header %}Energy Dashboard{% endblock %}
+
+{% block content %}
+<div class="stats-container">
+    <div class="stat-card">
+        <h3>Total Energy Consumed</h3>
+        <p>{{ "%.2f"|format(energy_data|sum(attribute='energy_consumed_kwh')) }} kWh</p>
+    </div>
+    <div class="stat-card">
+        <h3>Average Daily Consumption</h3>
+        <p>{{ "%.2f"|format(energy_data|sum(attribute='energy_consumed_kwh') / energy_data|length if energy_data else 0) }} kWh</p>
+    </div>
+    <div class="stat-card">
+        <h3>Number of Warehouses</h3>
+        <p>{{ warehouses|length }}</p>
+    </div>
+</div>
+
+<table>
+    <thead>
+        <tr>
+            <th>Warehouse ID</th>
+            <th>Date</th>
+            <th>Energy Consumed (kWh)</th>
+            <th>Data Hash</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in energy_data %}
+        <tr>
+            <td>{{ data.warehouse_id }}</td>
+            <td>{{ data.date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ "%.2f"|format(data.energy_consumed_kwh) }}</td>
+            <td class="data-hash">{{ data.data_hash }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %} 

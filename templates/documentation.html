@@ -1,0 +1,204 @@
+{% extends "base.html" %}
+
+{% block title %}Documentation - CircuLink{% endblock %}
+
+{% block content %}
+<div class="doc-layout">
+    <aside class="doc-sidebar">
+        <nav>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#parts-finder">Parts Finder Guide</a></li>
+                <li><a href="#energy-tracking">Energy Tracking Guide</a></li>
+                <li><a href="#efficiency-tracking">Efficiency Tracking for Procurement</a></li>
+                <li><a href="#blockchain">Blockchain Verification</a></li>
+                <li><a href="#sustainability">Sustainability Standards</a></li>
+                <li><a href="#api">API Integrations</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+                <li><a href="#compliance">Compliance Policies</a></li>
+                <li><a href="#support">User Support</a></li>
+            </ul>
+        </nav>
+    </aside>
+    <main class="doc-main">
+        <section id="overview">
+            <h1>CircuLink Documentation</h1>
+            <p>Welcome to CircuLink! This documentation provides a comprehensive guide to using the platform, understanding its technical underpinnings, and accessing support. CircuLink is designed to revolutionize sustainable supply chains and EV parts management through blockchain, IoT, and data-driven insights.</p>
+        </section>
+        <section id="parts-finder">
+            <h2>Parts Finder Guide</h2>
+            <ol>
+                <li>Navigate to <strong>Parts Finder</strong> from the main menu.</li>
+                <li>Use filters to search by part category, manufacturer, or warehouse location.</li>
+                <li>View real-time availability, compare prices, and place orders directly.</li>
+                <li>Track order status and manage procurement history.</li>
+            </ol>
+        </section>
+        <section id="energy-tracking">
+            <h2>Energy Tracking Guide</h2>
+            <ol>
+                <li>Access <strong>Energy Tracking</strong> from the dashboard.</li>
+                <li>Monitor energy consumption, waste management, and defect minimization.</li>
+                <li>Analyze trends with interactive charts and set efficiency targets.</li>
+                <li>Export data for reporting and compliance.</li>
+            </ol>
+        </section>
+        <section id="efficiency-tracking">
+            <h2>Efficiency Tracking for Procurement</h2>
+            <ol>
+                <li>Compare suppliers on cost, delivery lead times, reliability, and sustainability.</li>
+                <li>Use the <strong>Procurement Optimization</strong> tool to identify the best supplier for your needs.</li>
+                <li>Interactively explore supplier performance data and make informed decisions.</li>
+            </ol>
+        </section>
+        <section id="blockchain">
+            <h2>Blockchain Verification</h2>
+            <p>All supplier certifications and energy data are recorded on CircuLink's blockchain for transparency and immutability. Each transaction is hashed and can be verified in the <a href="/blockchain">Blockchain Explorer</a>.</p>
+            <pre><code>// Example: Verifying a supplier certificate hash
+GET /api/blockchain?cert_hash=abc123...
+
+// Response
+{
+  "block": 42,
+  "data": {
+    "type": "supplier_registration",
+    "cert_hash": "abc123..."
+  },
+  "timestamp": "2024-05-01T12:34:56Z"
+}
+</code></pre>
+        </section>
+        <section id="sustainability">
+            <h2>Sustainability Standards</h2>
+            <ul>
+                <li>Suppliers must provide valid sustainability certifications (ISO 14001, etc.).</li>
+                <li>Material sourcing and energy use are tracked for environmental compliance.</li>
+                <li>Regular audits ensure ongoing adherence to green standards.</li>
+            </ul>
+        </section>
+        <section id="api">
+            <h2>API Integrations</h2>
+            <p>CircuLink offers RESTful APIs for integration with external systems.</p>
+            <pre><code>// Example: Fetch all suppliers
+GET /api/suppliers
+
+// Example: Fetch energy data
+GET /api/energy_data
+</code></pre>
+        </section>
+        <section id="troubleshooting">
+            <h2>Troubleshooting</h2>
+            <ul>
+                <li><strong>Login Issues:</strong> Ensure your credentials are correct and your account is active.</li>
+                <li><strong>Data Not Updating:</strong> Refresh the page or check your network connection.</li>
+                <li><strong>API Errors:</strong> Refer to the API documentation for error codes and solutions.</li>
+            </ul>
+        </section>
+        <section id="compliance">
+            <h2>Compliance Policies</h2>
+            <ul>
+                <li>Data privacy and security are enforced according to POPIA and GDPR standards.</li>
+                <li>All transactions are logged and auditable.</li>
+                <li>Users must adhere to CircuLink's terms of service and ethical guidelines.</li>
+            </ul>
+        </section>
+        <section id="support">
+            <h2>User Support</h2>
+            <p>For help, contact our support team at <a href="mailto:circulinksa@gmail.com">circulinksa@gmail.com</a> or visit the <a href="/contact">Contact</a> page. You can also explore our <a href="#troubleshooting">Troubleshooting</a> section above.</p>
+        </section>
+    </main>
+</div>
+
+<style>
+.doc-layout {
+    display: flex;
+    gap: 2.5rem;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+.doc-sidebar {
+    min-width: 220px;
+    max-width: 260px;
+    background: rgba(10, 10, 20, 0.92);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px 0 rgba(0,184,255,0.07);
+    padding: 2rem 1.2rem;
+    position: sticky;
+    top: 2rem;
+    height: fit-content;
+}
+.doc-sidebar nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.doc-sidebar nav ul li {
+    margin-bottom: 1.2rem;
+}
+.doc-sidebar nav ul li a {
+    color: #00b8ff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.08rem;
+    transition: color 0.2s;
+}
+.doc-sidebar nav ul li a:hover {
+    color: #00ff88;
+}
+.doc-main {
+    flex: 1;
+    background: rgba(255,255,255,0.04);
+    border-radius: 18px;
+    box-shadow: 0 4px 24px 0 rgba(0,184,255,0.07);
+    padding: 2.5rem 2rem;
+    color: #fff;
+    min-width: 0;
+}
+.doc-main h1 {
+    font-size: 2.2rem;
+    color: #00b8ff;
+    margin-bottom: 1.2rem;
+}
+.doc-main h2 {
+    color: #00ff88;
+    margin-top: 2.2rem;
+    margin-bottom: 0.7rem;
+    font-size: 1.4rem;
+}
+.doc-main pre {
+    background: #181c24;
+    color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    overflow-x: auto;
+    margin: 1rem 0;
+    font-size: 1rem;
+}
+.doc-main code {
+    font-family: 'Fira Mono', 'Consolas', 'Menlo', monospace;
+}
+.doc-main a {
+    color: #00b8ff;
+    text-decoration: underline;
+}
+.doc-main a:hover {
+    color: #00ff88;
+}
+@media (max-width: 900px) {
+    .doc-layout {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    .doc-sidebar {
+        max-width: 100vw;
+        width: 100%;
+        position: static;
+        margin-bottom: 1.5rem;
+    }
+    .doc-main {
+        padding: 1.2rem 0.5rem;
+    }
+}
+</style>
+{% endblock %} 
